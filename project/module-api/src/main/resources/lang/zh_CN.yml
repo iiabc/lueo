@@ -1,0 +1,9 @@
+command_reload: "&6&l! &r已重载配置文件"
+
+success_connect_mysql: "&6&l! &r已连接数据库"
+error_connect_mysql: "&c&l! &r无法连接数据库"
+
+receive_luck_add: "&6&l! & r已增加 &a{0} &r点幸运值"
+admin_luck_add: "&6&l! & r已向玩家 &a{1} 增加 &a{0} &r点幸运值"
+receive_luck_del:  "&6&l! & r已减少 &a{0} &r点幸运值"
+admin_luck_del: "&6&l! & r已向玩家 &a{1} 减少 &a{0} &r点幸运值"

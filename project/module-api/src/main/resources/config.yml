@@ -1,0 +1,13 @@
+settings:
+  luck:
+    max: 100
+    default: 0
+    reset-time: "week 1 06 00"
+
+database:
+  enable: true
+  host: localhost
+  port: 3306
+  user: root
+  password: "123456"
+  database: only_way
