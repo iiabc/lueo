@@ -27,9 +27,6 @@ subprojects {
             links {
                 name("homepage").url("https://iplugin.hiusers.com/")
             }
-            dependencies {
-                name("QuestEngine").optional(true)
-            }
         }
         env {
             install(Basic, Bukkit, BukkitUtil)
@@ -43,11 +40,14 @@ subprojects {
         version {
             taboolib = "6.2.3-8cc2f66"
             // 跳过kotlin重定向
-//            skipKotlinRelocate = true
+            skipKotlinRelocate = true
         }
         relocate("top.maplex.arim","com.hiusers.mc.arim")
-//        relocate("org.jetbrains.exposed", "com.hiusers.mc.lueo.exposed")
-        relocate("com.zaxxer", "com.hiusers.mc.lueo.zaxxer")
+        relocate("org.jetbrains.exposed", "${rootProject.group}.jetbrains.exposed")
+//        relocate("org.jetbrains.kotlin", "${rootProject.group}.jetbrains.kotlin")
+//        relocate("com.zaxxer", "com.hiusers.mc.lueo.zaxxer")
+        relocate("org.jetbrains.kotlin", "${rootProject.group}.jetbrains.kotlin")
+        relocate("com.zaxxer.hikari", "${rootProject.group}.zaxxer.hikari")
     }
 
     // 全局仓库
@@ -63,8 +63,6 @@ subprojects {
 
         compileOnly("com.google.code.gson:gson:2.8.7")
 
-        compileOnly("api:QuestEngineAPI:4.0.9")
-
         taboo("top.maplex.arim:Arim:1.2.14")
 
         taboo("org.jetbrains.exposed:exposed-core:${exposedVersion}")
@@ -72,9 +70,9 @@ subprojects {
         taboo("org.jetbrains.exposed:exposed-jdbc:${exposedVersion}")
         taboo("org.jetbrains.exposed:exposed-java-time:${exposedVersion}")
         taboo("com.zaxxer:HikariCP:4.0.3")
-        compileOnly("org.slf4j:slf4j-simple:1.7.36")
 
-        compileOnly(kotlin("stdlib"))
+        taboo("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
+        taboo("org.jetbrains.kotlin:kotlin-reflect:2.1.0")
     }
     // 编译配置
     java {

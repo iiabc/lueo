@@ -25,6 +25,18 @@ object PlayerLuckRepository {
         playerLuck.luck
     }
 
+    fun addValue(uuid: UUID, value: Int): Int = transaction {
+        val playerLuck = findOrCreate(uuid)
+        playerLuck.luck = (playerLuck.luck + value).coerceAtMost(ConfigReader.maxLuck)
+        playerLuck.luck
+    }
+
+    fun delValue(uuid: UUID, value: Int): Int = transaction {
+        val playerLuck = findOrCreate(uuid)
+        playerLuck.luck = (playerLuck.luck - value)
+        playerLuck.luck
+    }
+
     fun resetLuck(uuid: UUID): Boolean = transaction {
         val playerLuck = findOrCreate(uuid)
         playerLuck.lastReset = LocalDateTime.now()

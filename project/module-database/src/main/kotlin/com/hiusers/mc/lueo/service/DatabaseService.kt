@@ -10,6 +10,8 @@ import org.jetbrains.exposed.v1.jdbc.Database
 import org.jetbrains.exposed.v1.jdbc.ExposedConnectionImpl
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+import taboolib.common.env.RuntimeDependencies
+import taboolib.common.env.RuntimeDependency
 import taboolib.common.platform.function.console
 import taboolib.common.platform.function.disablePlugin
 import taboolib.library.configuration.ConfigurationSection
@@ -19,6 +21,47 @@ import taboolib.module.lang.sendLang
  * @author iiabc
  * @since 2025/6/1 21:45
  */
+//@RuntimeDependencies(
+//    RuntimeDependency(
+//        "org.jetbrains.exposed:exposed-core:1.0.0-beta-2",
+//        transitive = false,
+//        relocate = ["!org.jetbrains.exposed", "org.jetbrains.exposed"]
+//    ),
+//    RuntimeDependency("org.jetbrains.exposed:exposed-dao:1.0.0-beta-2",
+//        transitive = false,
+//        relocate = ["!org.jetbrains.exposed", "org.jetbrains.exposed"]
+//    ),
+//    RuntimeDependency("org.jetbrains.exposed:exposed-jdbc:1.0.0-beta-2",
+//        transitive = false,
+//        relocate = ["!org.jetbrains.exposed", "org.jetbrains.exposed"]
+//    ),
+//    RuntimeDependency("org.jetbrains.exposed:exposed-java-time:1.0.0-beta-2",
+//        transitive = false,
+//        relocate = ["!org.jetbrains.exposed", "org.jetbrains.exposed"]
+//    ),
+//    RuntimeDependency(value = "org.jetbrains.kotlin:kotlin-reflect:2.1.0",
+//        transitive = false,
+//        relocate = ["!org.jetbrains.kotlin",  "org.jetbrains.kotlin"]
+//        ),
+//    RuntimeDependency(
+//        value = "!com.zaxxer:HikariCP:4.0.3",
+//        test = "com.zaxxer.hikari.HikariDataSource",
+//        relocate = ["!com.zaxxer.hikari", "com.zaxxer.hikari"],
+//        transitive = false
+//    )
+//)
+//RuntimeDependency(
+//value = "!org.slf4j:slf4j-api:2.0.8",
+//test = "org.slf4j.LoggerFactory",
+//relocate = ["!org.slf4j", "org.slf4j"],
+//transitive = false
+//),
+//RuntimeDependency(
+//value = "!com.zaxxer:HikariCP:4.0.3",
+//test = "com.zaxxer.hikari.HikariDataSource",
+//relocate = ["!com.zaxxer.hikari", "com.zaxxer.hikari", "!org.slf4j", "org.slf4j"],
+//transitive = false
+//)
 @Register
 object DatabaseService : Loadable {
 

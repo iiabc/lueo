@@ -14,7 +14,7 @@ object ActionLuck {
      * luck del {action}
      * luck get
      */
-    @KetherParser(["luck"], namespace = "lueo", shared = true)
+    @KetherParser(["luck"], namespace = "Lueo", shared = true)
     fun parser() = combinationParser {
         it.group(
             symbol(),

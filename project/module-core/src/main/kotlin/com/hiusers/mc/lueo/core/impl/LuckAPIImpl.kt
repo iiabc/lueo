@@ -23,11 +23,11 @@ class LuckAPIImpl : LuckAPI {
     }
 
     override fun addLuck(player: Player, value: Int): Int {
-        return setLuck(player, getLuck(player) + value)
+        return PlayerLuckRepository.addValue(player.uniqueId, value)
     }
 
     override fun delLuck(player: Player, value: Int): Int {
-        return setLuck(player, getLuck(player) - value)
+        return PlayerLuckRepository.delValue(player.uniqueId, value)
     }
 
     override fun resetLuck(player: Player): Boolean {

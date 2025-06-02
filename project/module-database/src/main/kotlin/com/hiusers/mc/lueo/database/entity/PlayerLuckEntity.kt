@@ -15,7 +15,4 @@ class PlayerLuckEntity(id: EntityID<UUID>) : UUIDEntity(id) {
 
     var luck by PlayerLuckTable.luck
     var lastReset by PlayerLuckTable.lastReset
-
-    val uuid: UUID
-        get() = id.value
 }
