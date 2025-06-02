@@ -11,6 +11,7 @@ import org.jetbrains.exposed.v1.jdbc.ExposedConnectionImpl
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import taboolib.common.platform.function.console
+import taboolib.common.platform.function.disablePlugin
 import taboolib.library.configuration.ConfigurationSection
 import taboolib.module.lang.sendLang
 
@@ -51,6 +52,7 @@ object DatabaseService : Loadable {
             console().sendLang("success_connect_mysql")
         } catch (e: Exception) {
             console().sendLang("error_connect_mysql")
+            disablePlugin()
             error(e.message?: "Unknow error database")
         }
     }
@@ -60,8 +62,16 @@ object DatabaseService : Loadable {
         val port = config.getInt("port", 3306)
         val database = config.getString("database", "minecraft_db")
         val useSSL = config.getBoolean("use-ssl", false)
+        val allowPublicKeyRetrieval = config.getBoolean("allow-public-key-retrieval", true)
+        val useUnicode = config.getBoolean("use-unicode", true)
+        val characterEncoding = config.getString("character-encoding", "UTF-8")
+        val serverTimezone = config.getString("server-timezone", "Asia/Shanghai")
 
-        return "jdbc:mysql://$host:$port/$database?useSSL=$useSSL"
+        return "jdbc:mysql://$host:$port/$database?useSSL=$useSSL&" +
+                "allowPublicKeyRetrieval=$allowPublicKeyRetrieval&" +
+                "useUnicode=$useUnicode&" +
+                "characterEncoding=$characterEncoding&" +
+                "serverTimezone=$serverTimezone"
     }
 
     /**

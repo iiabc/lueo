@@ -1,7 +1,5 @@
 package com.hiusers.mc.lueo.service
 
-import com.hiusers.mc.lueo.api.LuckAPI
-import org.bukkit.Bukkit
 import taboolib.common.platform.Schedule
 
 /**
@@ -10,18 +8,17 @@ import taboolib.common.platform.Schedule
  */
 object TimingService {
 
-    private val luckAPI = LuckAPI.INSTANCE
-
     /**
      * 每小时检查是否需要重置幸运值
      */
-    @Schedule(true, period = 20 * 60 * 60)
+    @Schedule(true, 50, 20 * 60 * 60)
     fun checkResetTime() {
-        for (player in Bukkit.getOnlinePlayers()) {
-            if (luckAPI.checkResetTime(player)) {
-                luckAPI.resetLuck(player)
-            }
-        }
+//        val luckAPI = Luck.api()
+//        for (player in Bukkit.getOnlinePlayers()) {
+//            if (luckAPI.checkResetTime(player)) {
+//                luckAPI.resetLuck(player)
+//            }
+//        }
     }
 
 }

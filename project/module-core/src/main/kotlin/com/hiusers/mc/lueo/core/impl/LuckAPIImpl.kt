@@ -3,8 +3,6 @@ package com.hiusers.mc.lueo.core.impl
 import com.hiusers.mc.lueo.api.LuckAPI
 import com.hiusers.mc.lueo.reader.ConfigReader
 import com.hiusers.mc.lueo.repository.PlayerLuckRepository
-import com.hiusers.mc.lueo.system.Loadable
-import com.hiusers.mc.lueo.system.Register
 import com.hiusers.mc.lueo.util.TimeUtil.toLong
 import org.bukkit.entity.Player
 import taboolib.common5.util.parseTimeCycle
@@ -25,11 +23,11 @@ class LuckAPIImpl : LuckAPI {
     }
 
     override fun addLuck(player: Player, value: Int): Int {
-        return setLuck( player, getLuck(player) + value)
+        return setLuck(player, getLuck(player) + value)
     }
 
     override fun delLuck(player: Player, value: Int): Int {
-        return setLuck( player, getLuck(player) - value)
+        return setLuck(player, getLuck(player) - value)
     }
 
     override fun resetLuck(player: Player): Boolean {
@@ -37,7 +35,7 @@ class LuckAPIImpl : LuckAPI {
     }
 
     override fun getResetTime(player: Player): LocalDateTime? {
-         return PlayerLuckRepository.getResetTime(player.uniqueId)
+        return PlayerLuckRepository.getResetTime(player.uniqueId)
     }
 
     override fun checkResetTime(player: Player): Boolean {
@@ -50,14 +48,4 @@ class LuckAPIImpl : LuckAPI {
         return cycle.isTimeout
     }
 
-}
-
-@Register
-object LuckAPILoader: Loadable {
-    override val priority: Int
-        get() = 1
-
-    override fun load() {
-        LuckAPI.INSTANCE = LuckAPIImpl()
-    }
 }

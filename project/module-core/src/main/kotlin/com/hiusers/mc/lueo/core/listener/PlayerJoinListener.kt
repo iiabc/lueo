@@ -1,6 +1,6 @@
 package com.hiusers.mc.lueo.core.listener
 
-import com.hiusers.mc.lueo.api.LuckAPI
+import com.hiusers.mc.lueo.LuckAPIProvider
 import org.bukkit.event.player.PlayerJoinEvent
 import taboolib.common.platform.event.SubscribeEvent
 
@@ -10,11 +10,10 @@ import taboolib.common.platform.event.SubscribeEvent
  */
 object PlayerJoinListener {
 
-    private val luckAPI = LuckAPI.INSTANCE
-
     @SubscribeEvent
     fun event(ev: PlayerJoinEvent) {
         val player = ev.player
+        val luckAPI = LuckAPIProvider.api()
         if (luckAPI.checkResetTime(player)) {
             luckAPI.resetLuck(player)
         }

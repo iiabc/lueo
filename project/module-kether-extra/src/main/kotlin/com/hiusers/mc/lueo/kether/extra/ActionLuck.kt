@@ -1,6 +1,6 @@
 package com.hiusers.mc.lueo.kether.extra
 
-import com.hiusers.mc.lueo.api.LuckAPI
+import com.hiusers.mc.lueo.LuckAPIProvider
 import com.hiusers.mc.lueo.kether.ActionFrame.player
 import taboolib.common5.cint
 import taboolib.module.kether.KetherParser
@@ -25,16 +25,16 @@ object ActionLuck {
                 when (action.lowercase()) {
                     "add" -> {
                         val a = value?.let { v -> run(v).getNow(0) }?.cint?: 0
-                        LuckAPI.INSTANCE.addLuck(player(), a)
+                        LuckAPIProvider.api().addLuck(player(), a)
                     }
 
                     "del" -> {
                         val a = value?.let { v -> run(v).getNow(0) }?.cint?: 0
-                         LuckAPI.INSTANCE.delLuck(player(), a)
+                         LuckAPIProvider.api().delLuck(player(), a)
                     }
 
                     "get" -> {
-                        LuckAPI.INSTANCE.getLuck(player())
+                        LuckAPIProvider.api().getLuck(player())
                     }
 
                     else -> error("Unknown luck action: $action")

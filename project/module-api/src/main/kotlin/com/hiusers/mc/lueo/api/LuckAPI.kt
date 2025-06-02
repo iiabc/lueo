@@ -58,9 +58,4 @@ interface LuckAPI {
      */
     fun checkResetTime(player: Player): Boolean
 
-
-    companion object {
-        lateinit var INSTANCE: LuckAPI
-    }
-
 }

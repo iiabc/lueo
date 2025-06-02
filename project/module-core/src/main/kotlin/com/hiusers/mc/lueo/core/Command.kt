@@ -1,6 +1,6 @@
 package com.hiusers.mc.lueo.core
 
-import com.hiusers.mc.lueo.api.LuckAPI
+import com.hiusers.mc.lueo.LuckAPIProvider
 import com.hiusers.mc.lueo.core.load.LoadableContainer
 import com.hiusers.mc.lueo.util.BukkitSimple.runWithPlayer
 import org.bukkit.entity.Player
@@ -32,14 +32,14 @@ object Command {
                 player {
                     execute<ProxyCommandSender> { sender, context, _ ->
                         sender.runWithPlayer(context) {
-                            val value = LuckAPI.INSTANCE.addLuck(this, context["amount"].cint)
+                            val value = LuckAPIProvider.api().addLuck(this, context["amount"].cint)
                             sendLang("receive_luck_add", value)
                             sender.sendLang("admin_luck_add", value, name)
                         }
                     }
                 }
                 execute<Player> { sender, context, _ ->
-                    val value = LuckAPI.INSTANCE.addLuck(sender, context["amount"].cint)
+                    val value = LuckAPIProvider.api().addLuck(sender, context["amount"].cint)
                     sender.sendLang("receive_luck_add", value)
                 }
             }
@@ -49,14 +49,14 @@ object Command {
                 player {
                     execute<ProxyCommandSender> { sender, context, _ ->
                         sender.runWithPlayer(context) {
-                            val value = LuckAPI.INSTANCE.delLuck(this, context["amount"].cint)
+                            val value = LuckAPIProvider.api().delLuck(this, context["amount"].cint)
                             sendLang("receive_luck_del", value)
                             sender.sendLang("admin_luck_del", value, name)
                         }
                     }
                 }
                 execute<Player> { sender, context, _ ->
-                    val value = LuckAPI.INSTANCE.delLuck(sender, context["amount"].cint)
+                    val value = LuckAPIProvider.api().delLuck(sender, context["amount"].cint)
                     sender.sendLang("receive_luck_del", value)
                 }
             }

@@ -36,12 +36,17 @@ subprojects {
             install(CommandHelper)
             install(BukkitHook)
             install(Kether, JavaScript)
+
+            // 开启隔离类加载器（沙盒模式）
+            enableIsolatedClassloader = true
         }
         version {
             taboolib = "6.2.3-8cc2f66"
+            // 跳过kotlin重定向
+//            skipKotlinRelocate = true
         }
         relocate("top.maplex.arim","com.hiusers.mc.arim")
-        relocate("org.jetbrains.exposed", "com.hiusers.mc.lueo.exposed")
+//        relocate("org.jetbrains.exposed", "com.hiusers.mc.lueo.exposed")
         relocate("com.zaxxer", "com.hiusers.mc.lueo.zaxxer")
     }
 
@@ -67,6 +72,7 @@ subprojects {
         taboo("org.jetbrains.exposed:exposed-jdbc:${exposedVersion}")
         taboo("org.jetbrains.exposed:exposed-java-time:${exposedVersion}")
         taboo("com.zaxxer:HikariCP:4.0.3")
+        compileOnly("org.slf4j:slf4j-simple:1.7.36")
 
         compileOnly(kotlin("stdlib"))
     }
