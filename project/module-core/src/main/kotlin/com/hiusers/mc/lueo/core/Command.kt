@@ -27,20 +27,41 @@ object Command {
 
     @CommandBody(permission = "lueo.command.admin.luck")
     val luck = subCommand {
+        literal("set") {
+            int("amount") {
+                player {
+                    execute<ProxyCommandSender> { sender, context, _ ->
+                        sender.runWithPlayer(context) {
+                            val amount = context["amount"].cint
+                            val value = LuckAPIProvider.api().setLuck(this, amount)?: "错误"
+                            sendLang("receive_luck_set", value)
+                            sender.sendLang("admin_luck_set", value, name)
+                        }
+                    }
+                }
+                execute<Player> { sender, context, _ ->
+                    val amount = context["amount"].cint
+                    val value = LuckAPIProvider.api().setLuck(sender, amount)?: "错误"
+                    sender.sendLang("receive_luck_set", value)
+                }
+            }
+        }
         literal("add") {
             int("amount") {
                 player {
                     execute<ProxyCommandSender> { sender, context, _ ->
                         sender.runWithPlayer(context) {
-                            val value = LuckAPIProvider.api().addLuck(this, context["amount"].cint)
-                            sendLang("receive_luck_add", value)
-                            sender.sendLang("admin_luck_add", value, name)
+                            val amount = context["amount"].cint
+                            val value = LuckAPIProvider.api().addLuck(this, amount)?: "错误"
+                            sendLang("receive_luck_add", amount, value)
+                            sender.sendLang("admin_luck_add", amount, value, name)
                         }
                     }
                 }
                 execute<Player> { sender, context, _ ->
-                    val value = LuckAPIProvider.api().addLuck(sender, context["amount"].cint)
-                    sender.sendLang("receive_luck_add", value)
+                    val amount = context["amount"].cint
+                    val value = LuckAPIProvider.api().addLuck(sender, amount)?: "错误"
+                    sender.sendLang("receive_luck_add", amount, value)
                 }
             }
         }
@@ -49,16 +70,32 @@ object Command {
                 player {
                     execute<ProxyCommandSender> { sender, context, _ ->
                         sender.runWithPlayer(context) {
-                            val value = LuckAPIProvider.api().delLuck(this, context["amount"].cint)
-                            sendLang("receive_luck_del", value)
-                            sender.sendLang("admin_luck_del", value, name)
+                            val amount = context["amount"].cint
+                            val value = LuckAPIProvider.api().delLuck(this, amount)?: "错误"
+                            sendLang("receive_luck_del", amount, value)
+                            sender.sendLang("admin_luck_del", amount, value, name)
                         }
                     }
                 }
                 execute<Player> { sender, context, _ ->
-                    val value = LuckAPIProvider.api().delLuck(sender, context["amount"].cint)
-                    sender.sendLang("receive_luck_del", value)
+                    val amount = context["amount"].cint
+                    val value = LuckAPIProvider.api().delLuck(sender, amount)?: "错误"
+                    sender.sendLang("receive_luck_del", amount, value)
                 }
+            }
+        }
+        literal("get") {
+            player {
+                execute<ProxyCommandSender> { sender, context, _ ->
+                    sender.runWithPlayer(context) {
+                        val value = LuckAPIProvider.api().getLuck(this)?: "错误"
+                        sender.sendLang("admin_luck_look", value)
+                    }
+                }
+            }
+            execute<Player> { sender, _, _ ->
+                val value = LuckAPIProvider.api().getLuck(sender)?: "错误"
+                sender.sendLang("admin_luck_look_self", value)
             }
         }
     }

@@ -10,32 +10,38 @@ import java.time.LocalDateTime
 interface LuckAPI {
 
     /**
+     * 创建玩家数据
+     * @param player 玩家
+     */
+    fun createUser(player: Player)
+
+    /**
      * 获取玩家的幸运值
      * @param player 玩家
      * @return 幸运值
      */
-    fun getLuck(player: Player): Int
+    fun getLuck(player: Player): Int?
 
     /**
      * 设置玩家的幸运值
      * @param player 玩家
      * @param value 幸运值
      */
-    fun setLuck(player: Player, value: Int): Int
+    fun setLuck(player: Player, value: Int): Int?
 
     /**
      * 增加玩家的幸运值
      * @param player 玩家
      * @param value 幸运值
      */
-    fun addLuck(player: Player, value: Int): Int
+    fun addLuck(player: Player, value: Int): Int?
 
     /**
      * 减少玩家的幸运值
      * @param player 玩家
      * @param value 幸运值
      */
-    fun delLuck(player: Player, value: Int): Int
+    fun delLuck(player: Player, value: Int): Int?
 
     /**
      * 重置玩家的幸运值

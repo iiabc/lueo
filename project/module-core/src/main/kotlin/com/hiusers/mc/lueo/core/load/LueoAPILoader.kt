@@ -4,7 +4,6 @@ import com.hiusers.mc.lueo.LuckAPIProvider
 import com.hiusers.mc.lueo.core.impl.LuckAPIImpl
 import com.hiusers.mc.lueo.system.Loadable
 import com.hiusers.mc.lueo.system.Register
-import taboolib.common.platform.function.info
 
 /**
  * @author iiabc
@@ -16,7 +15,6 @@ object LueoAPILoader : Loadable {
         get() = 1
 
     override fun load() {
-        info("加载 api>>>>>>>>>>>>>>>>>>>>>>")
         LuckAPIProvider.register(LuckAPIImpl())
     }
 }

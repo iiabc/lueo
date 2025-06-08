@@ -1,7 +1,7 @@
 package com.hiusers.mc.lueo.database.table
 
-import org.jetbrains.exposed.v1.core.dao.id.UUIDTable
-import org.jetbrains.exposed.v1.javatime.datetime
+import org.jetbrains.exposed.dao.id.UUIDTable
+import org.jetbrains.exposed.sql.javatime.datetime
 
 /**
  * @author iiabc

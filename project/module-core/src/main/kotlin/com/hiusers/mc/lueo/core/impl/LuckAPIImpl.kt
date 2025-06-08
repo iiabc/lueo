@@ -14,20 +14,24 @@ import java.time.LocalDateTime
  */
 class LuckAPIImpl : LuckAPI {
 
-    override fun getLuck(player: Player): Int {
-        return PlayerLuckRepository.findOrCreate(player.uniqueId).luck
+    override fun createUser(player: Player) {
+        PlayerLuckRepository.createUser(player.uniqueId)
     }
 
-    override fun setLuck(player: Player, value: Int): Int {
-        return PlayerLuckRepository.updateValue(player.uniqueId, value)
+    override fun getLuck(player: Player): Int? {
+        return PlayerLuckRepository.getLuck(player.uniqueId)
     }
 
-    override fun addLuck(player: Player, value: Int): Int {
-        return PlayerLuckRepository.addValue(player.uniqueId, value)
+    override fun setLuck(player: Player, value: Int): Int? {
+        return PlayerLuckRepository.updateLuck(player.uniqueId, value)
     }
 
-    override fun delLuck(player: Player, value: Int): Int {
-        return PlayerLuckRepository.delValue(player.uniqueId, value)
+    override fun addLuck(player: Player, value: Int): Int? {
+        return PlayerLuckRepository.addLuck(player.uniqueId, value)
+    }
+
+    override fun delLuck(player: Player, value: Int): Int? {
+        return PlayerLuckRepository.delLuck(player.uniqueId, value)
     }
 
     override fun resetLuck(player: Player): Boolean {

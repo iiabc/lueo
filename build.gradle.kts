@@ -35,7 +35,7 @@ subprojects {
             install(Kether, JavaScript)
 
             // 开启隔离类加载器（沙盒模式）
-            enableIsolatedClassloader = true
+//            enableIsolatedClassloader = true
         }
         version {
             taboolib = "6.2.3-8cc2f66"
@@ -44,8 +44,6 @@ subprojects {
         }
         relocate("top.maplex.arim","com.hiusers.mc.arim")
         relocate("org.jetbrains.exposed", "${rootProject.group}.jetbrains.exposed")
-//        relocate("org.jetbrains.kotlin", "${rootProject.group}.jetbrains.kotlin")
-//        relocate("com.zaxxer", "com.hiusers.mc.lueo.zaxxer")
         relocate("org.jetbrains.kotlin", "${rootProject.group}.jetbrains.kotlin")
         relocate("com.zaxxer.hikari", "${rootProject.group}.zaxxer.hikari")
     }

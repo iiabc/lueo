@@ -3,6 +3,7 @@ package com.hiusers.mc.lueo.core.listener
 import com.hiusers.mc.lueo.LuckAPIProvider
 import org.bukkit.event.player.PlayerJoinEvent
 import taboolib.common.platform.event.SubscribeEvent
+import taboolib.platform.util.sendLang
 
 /**
  * @author iiabc
@@ -14,8 +15,10 @@ object PlayerJoinListener {
     fun event(ev: PlayerJoinEvent) {
         val player = ev.player
         val luckAPI = LuckAPIProvider.api()
+        luckAPI.createUser(player)
         if (luckAPI.checkResetTime(player)) {
-            luckAPI.resetLuck(player)
+            if (luckAPI.resetLuck(player)) return
+            player.sendLang("error_data")
         }
     }
 
