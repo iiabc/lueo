@@ -1,6 +1,6 @@
 package com.hiusers.mc.lueo.service
 
-import com.hiusers.mc.lueo.LuckAPIProvider
+import com.hiusers.mc.lueo.Lueo
 import taboolib.common.platform.Schedule
 import taboolib.platform.util.onlinePlayers
 
@@ -15,7 +15,7 @@ object TimingService {
      */
     @Schedule(true, 50, 20 * 60 * 60)
     fun checkResetTime() {
-        val luckAPI = LuckAPIProvider.api()
+        val luckAPI = Lueo.api()
         onlinePlayers.forEach {
             if (luckAPI.checkResetTime(it)) {
                 luckAPI.resetLuck(it)

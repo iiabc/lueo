@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     java
     id("io.izzel.taboolib") version "2.0.23"
+    id("com.github.johnrengelman.shadow") version "8.1.1" apply false
     kotlin("jvm") version "2.1.0"
 }
 
@@ -18,33 +19,16 @@ subprojects {
 
     // TabooLib 配置
     taboolib {
-        description {
-            name(rootProject.name)
-            prefix(rootProject.name)
-            contributors {
-                name("HiUsers")
-            }
-            links {
-                name("homepage").url("https://iplugin.hiusers.com/")
-            }
-        }
         env {
             install(Basic, Bukkit, BukkitUtil)
             install(CommandHelper)
             install(BukkitHook)
             install(Kether, JavaScript)
-
-            // 开启隔离类加载器（沙盒模式）
-//            enableIsolatedClassloader = true
         }
         version {
-            taboolib = "6.2.3-8cc2f66"
-            // 跳过kotlin重定向
-            skipKotlinRelocate = true
+            taboolib = "6.2.3-7105e58f"
         }
-        relocate("top.maplex.arim","com.hiusers.mc.arim")
-        relocate("org.jetbrains.exposed", "${rootProject.group}.jetbrains.exposed")
-        relocate("org.jetbrains.kotlin", "${rootProject.group}.jetbrains.kotlin")
+        relocate("top.maplex.arim","${rootProject.group}.arim")
         relocate("com.zaxxer.hikari", "${rootProject.group}.zaxxer.hikari")
     }
 
@@ -61,16 +45,13 @@ subprojects {
 
         compileOnly("com.google.code.gson:gson:2.8.7")
 
-        taboo("top.maplex.arim:Arim:1.2.14")
+        implementation("top.maplex.arim:Arim:1.2.14")
 
-        taboo("org.jetbrains.exposed:exposed-core:${exposedVersion}")
-        taboo("org.jetbrains.exposed:exposed-dao:${exposedVersion}")
-        taboo("org.jetbrains.exposed:exposed-jdbc:${exposedVersion}")
-        taboo("org.jetbrains.exposed:exposed-java-time:${exposedVersion}")
-        taboo("com.zaxxer:HikariCP:4.0.3")
-
-        taboo("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
-        taboo("org.jetbrains.kotlin:kotlin-reflect:2.1.0")
+        compileOnly("org.jetbrains.exposed:exposed-core:${exposedVersion}")
+        compileOnly("org.jetbrains.exposed:exposed-dao:${exposedVersion}")
+        compileOnly("org.jetbrains.exposed:exposed-jdbc:${exposedVersion}")
+        compileOnly("org.jetbrains.exposed:exposed-java-time:${exposedVersion}")
+        implementation("com.zaxxer:HikariCP:4.0.3")
     }
     // 编译配置
     java {

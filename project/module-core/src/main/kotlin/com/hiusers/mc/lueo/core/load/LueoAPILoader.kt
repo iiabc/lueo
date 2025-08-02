@@ -1,6 +1,6 @@
 package com.hiusers.mc.lueo.core.load
 
-import com.hiusers.mc.lueo.LuckAPIProvider
+import com.hiusers.mc.lueo.Lueo
 import com.hiusers.mc.lueo.core.impl.LuckAPIImpl
 import com.hiusers.mc.lueo.system.Loadable
 import com.hiusers.mc.lueo.system.Register
@@ -15,6 +15,6 @@ object LueoAPILoader : Loadable {
         get() = 1
 
     override fun load() {
-        LuckAPIProvider.register(LuckAPIImpl())
+        Lueo.register(LuckAPIImpl())
     }
 }

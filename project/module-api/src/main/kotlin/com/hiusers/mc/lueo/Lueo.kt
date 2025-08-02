@@ -9,12 +9,12 @@ import taboolib.platform.util.bukkitPlugin
  * @author iiabc
  * @since 2025/6/2 13:41
  */
-object LuckAPIProvider {
+object Lueo {
 
     internal var api: LuckAPI? = null
 
     fun api(): LuckAPI {
-        return api ?: error("LuckAPI 未完成加载")
+        return api ?: error("Lueo API 未完成加载")
     }
 
     fun register(api: LuckAPI) {

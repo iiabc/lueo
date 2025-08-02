@@ -1,6 +1,6 @@
 package com.hiusers.mc.lueo.core
 
-import com.hiusers.mc.lueo.LuckAPIProvider
+import com.hiusers.mc.lueo.Lueo
 import com.hiusers.mc.lueo.core.load.LoadableContainer
 import com.hiusers.mc.lueo.util.BukkitSimple.runWithPlayer
 import org.bukkit.entity.Player
@@ -33,7 +33,7 @@ object Command {
                     execute<ProxyCommandSender> { sender, context, _ ->
                         sender.runWithPlayer(context) {
                             val amount = context["amount"].cint
-                            val value = LuckAPIProvider.api().setLuck(this, amount)?: "错误"
+                            val value = Lueo.api().setLuck(this, amount)?: "错误"
                             sendLang("receive_luck_set", value)
                             sender.sendLang("admin_luck_set", value, name)
                         }
@@ -41,7 +41,7 @@ object Command {
                 }
                 execute<Player> { sender, context, _ ->
                     val amount = context["amount"].cint
-                    val value = LuckAPIProvider.api().setLuck(sender, amount)?: "错误"
+                    val value = Lueo.api().setLuck(sender, amount)?: "错误"
                     sender.sendLang("receive_luck_set", value)
                 }
             }
@@ -52,7 +52,7 @@ object Command {
                     execute<ProxyCommandSender> { sender, context, _ ->
                         sender.runWithPlayer(context) {
                             val amount = context["amount"].cint
-                            val value = LuckAPIProvider.api().addLuck(this, amount)?: "错误"
+                            val value = Lueo.api().addLuck(this, amount)?: "错误"
                             sendLang("receive_luck_add", amount, value)
                             sender.sendLang("admin_luck_add", amount, value, name)
                         }
@@ -60,7 +60,7 @@ object Command {
                 }
                 execute<Player> { sender, context, _ ->
                     val amount = context["amount"].cint
-                    val value = LuckAPIProvider.api().addLuck(sender, amount)?: "错误"
+                    val value = Lueo.api().addLuck(sender, amount)?: "错误"
                     sender.sendLang("receive_luck_add", amount, value)
                 }
             }
@@ -71,7 +71,7 @@ object Command {
                     execute<ProxyCommandSender> { sender, context, _ ->
                         sender.runWithPlayer(context) {
                             val amount = context["amount"].cint
-                            val value = LuckAPIProvider.api().delLuck(this, amount)?: "错误"
+                            val value = Lueo.api().delLuck(this, amount)?: "错误"
                             sendLang("receive_luck_del", amount, value)
                             sender.sendLang("admin_luck_del", amount, value, name)
                         }
@@ -79,7 +79,7 @@ object Command {
                 }
                 execute<Player> { sender, context, _ ->
                     val amount = context["amount"].cint
-                    val value = LuckAPIProvider.api().delLuck(sender, amount)?: "错误"
+                    val value = Lueo.api().delLuck(sender, amount)?: "错误"
                     sender.sendLang("receive_luck_del", amount, value)
                 }
             }
@@ -88,13 +88,13 @@ object Command {
             player {
                 execute<ProxyCommandSender> { sender, context, _ ->
                     sender.runWithPlayer(context) {
-                        val value = LuckAPIProvider.api().getLuck(this)?: "错误"
+                        val value = Lueo.api().getLuck(this)?: "错误"
                         sender.sendLang("admin_luck_look", value)
                     }
                 }
             }
             execute<Player> { sender, _, _ ->
-                val value = LuckAPIProvider.api().getLuck(sender)?: "错误"
+                val value = Lueo.api().getLuck(sender)?: "错误"
                 sender.sendLang("admin_luck_look_self", value)
             }
         }
