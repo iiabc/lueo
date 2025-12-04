@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    id("io.izzel.taboolib") version "2.0.23"
+    id("io.izzel.taboolib") version "2.0.27"
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
     kotlin("jvm") version "2.1.0"
 }
@@ -26,7 +26,7 @@ subprojects {
             install(Kether, JavaScript)
         }
         version {
-            taboolib = "6.2.3-7105e58f"
+            taboolib = "6.2.4-abd325ee"
         }
         relocate("top.maplex.arim","${rootProject.group}.arim")
         relocate("com.zaxxer.hikari", "${rootProject.group}.zaxxer.hikari")
