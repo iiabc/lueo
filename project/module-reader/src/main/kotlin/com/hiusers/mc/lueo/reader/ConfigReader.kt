@@ -19,4 +19,7 @@ object ConfigReader {
     @ConfigNode("settings.luck.reset-time")
     var resetTime: String = ""
 
+    @ConfigNode("settings.death")
+    var deathPenalty: Int = 1
+
 }
